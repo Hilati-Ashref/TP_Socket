@@ -13,11 +13,11 @@ public class ClientReceive extends Thread {
         this.cltSock = cltSock;
     }
 
-    public void run() {
+    private void recieve(DatagramSocket cltSock) {
         try {
             DatagramPacket pkRcv = new DatagramPacket(dataRcv, dataRcv.length);
             cltSock.receive(pkRcv);
-
+//            return pkRcv;
             String msgRcv = new String(pkRcv.getData(), 0, pkRcv.getLength());
             System.out.println("message du serveur:" + msgRcv);
         } catch (IOException e) {
@@ -25,8 +25,8 @@ public class ClientReceive extends Thread {
             System.out.println("error in Client Receive");
         }
     }
-
-    public void closeSocket() {
-        cltSock.close();
+    public void run() {
+        recieve(cltSock);
     }
+
 }

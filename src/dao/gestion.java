@@ -14,16 +14,14 @@ public class gestion implements Igestion {
     }
 
     @Override
-    public void commandManager ( DatagramPacket pkRcv ) throws SocketException {
+    public void commandManager ( DatagramPacket pkRcv, DatagramSocket serverSocket ) throws SocketException {
         String msgRcv = new String(pkRcv.getData());
         InetAddress IPClient = pkRcv.getAddress();
         int portClient = pkRcv.getPort();
-        DatagramSocket serverSocket = new DatagramSocket(portClient);
-
         if (msgRcv.startsWith("##")) {
             new ServerSend( serverSocket, IPClient, "testify112", portClient);
         } else {
-            new ServerSend( serverSocket, IPClient, "testify000", portClient);
+            new ServerSend( serverSocket, IPClient, "testify000" + msgRcv, 9875);
         }
     }
 
