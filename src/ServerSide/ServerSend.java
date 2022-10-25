@@ -6,13 +6,12 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class ServerSend {
-    public ServerSend ( DatagramSocket serverSocket, InetAddress IP, String msgSnd, int port ) {
+    public ServerSend ( String msgSnd, InetAddress IPClient, int portClient ) {
         try {
-            while (true) {
-                byte[] dataSnd = msgSnd.getBytes();
-                DatagramPacket pkSend = new DatagramPacket(dataSnd, dataSnd.length, IP, port);
-                serverSocket.send(pkSend);
-            }
+            DatagramSocket serverSocket = ServerUDP.serverSocket;
+            byte[] dataSnd = msgSnd.getBytes();
+            DatagramPacket pkSend = new DatagramPacket(dataSnd, dataSnd.length, IPClient, portClient);
+            serverSocket.send(pkSend);
         } catch (IOException e) {
             e.printStackTrace();
         }

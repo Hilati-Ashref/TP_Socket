@@ -7,7 +7,7 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 
 public interface Igestion {
-    public void commandManager( DatagramPacket pkRcv, DatagramSocket serverSocket ) throws SocketException;
+    public void commandManager( DatagramPacket pkRcv ) throws SocketException;
     public void addUser( User u );
 
     public void verifLogin(User u);

@@ -3,7 +3,7 @@ package ClientSide;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class ClientReceive extends Thread {
     private DatagramSocket cltSock;
@@ -12,21 +12,17 @@ public class ClientReceive extends Thread {
     public ClientReceive(DatagramSocket cltSock) {
         this.cltSock = cltSock;
     }
-
-    private void recieve(DatagramSocket cltSock) {
-        try {
-            DatagramPacket pkRcv = new DatagramPacket(dataRcv, dataRcv.length);
-            cltSock.receive(pkRcv);
-//            return pkRcv;
-            String msgRcv = new String(pkRcv.getData(), 0, pkRcv.getLength());
-            System.out.println("message du serveur:" + msgRcv);
-        } catch (IOException e) {
-//          e.printStackTrace();
-            System.out.println("error in Client Receive");
-        }
-    }
     public void run() {
-        recieve(cltSock);
+        try {
+            while (true){
+                DatagramPacket pkRcv = new DatagramPacket(dataRcv, dataRcv.length);
+                cltSock.receive(pkRcv);
+                String msgRcv = new String(pkRcv.getData(), 0, pkRcv.getLength());
+                System.out.println("message du serveur:" + msgRcv);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
