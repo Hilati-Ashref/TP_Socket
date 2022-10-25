@@ -20,21 +20,17 @@ public class ClientSend extends Thread {
 
     public void run() {
         try {
-            System.out.println("Donner votre pseudo: ");
-            BufferedReader inClavier = new BufferedReader(new InputStreamReader(System.in));
-            String msg = inClavier.readLine();
+            while (true){
+                BufferedReader inClavier = new BufferedReader(new InputStreamReader(System.in));
+                String msg = inClavier.readLine();
 
-            dataSnd = msg.getBytes();
-            DatagramPacket pkSend = new DatagramPacket(dataSnd, dataSnd.length, ipServer, portSrv);
-            cltSock.send(pkSend);
-
+                dataSnd = msg.getBytes();
+                DatagramPacket pkSend = new DatagramPacket(dataSnd, dataSnd.length, ipServer, portSrv);
+                cltSock.send(pkSend);
+            }
         } catch (IOException e) {
-//            e.printStackTrace();
-            System.out.println("error in Client Send");
+            e.printStackTrace();
         }
     }
 
-    public void closeSocket() {
-        cltSock.close();
-    }
 }

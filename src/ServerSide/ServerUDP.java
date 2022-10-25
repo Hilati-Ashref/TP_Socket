@@ -1,18 +1,12 @@
 package ServerSide;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
+import java.net.SocketException;
 
 public class ServerUDP {
-    public ServerUDP () throws IOException {
-        System.out.println("Serveur");
-        int port = 9876 ;
-        DatagramSocket serverSocket = new DatagramSocket(port);
-        while (true) {
-            ServerReceive sRcv = new ServerReceive(serverSocket);
-            sRcv.start();
-        }
+    static DatagramSocket serverSocket;
+    public static void main ( String[] args ) throws SocketException {
+        serverSocket = new DatagramSocket(9876);
+        new ServerReceive(serverSocket);
     }
 }

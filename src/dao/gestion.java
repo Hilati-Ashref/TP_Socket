@@ -2,6 +2,7 @@ package dao;
 
 import Model.User;
 import ServerSide.ServerSend;
+import ServerSide.ServerUDP;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -13,17 +14,15 @@ public class gestion implements Igestion {
     public gestion() {
     }
 
-    @Override
     public void commandManager ( DatagramPacket pkRcv ) throws SocketException {
         String msgRcv = new String(pkRcv.getData());
         InetAddress IPClient = pkRcv.getAddress();
         int portClient = pkRcv.getPort();
-        DatagramSocket serverSocket = new DatagramSocket(portClient);
-
+        System.out.println(msgRcv);
         if (msgRcv.startsWith("##")) {
-            new ServerSend( serverSocket, IPClient, "testify112", portClient);
+            new ServerSend( "testify112", IPClient, portClient);
         } else {
-            new ServerSend( serverSocket, IPClient, "testify000", portClient);
+            new ServerSend( "testify000" + msgRcv, IPClient, portClient);
         }
     }
 

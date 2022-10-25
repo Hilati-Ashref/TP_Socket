@@ -5,22 +5,18 @@ import dao.gestion;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.SocketException;
 
-public class ServerReceive extends Thread {
+public class ServerReceive {
     private DatagramSocket serverSocket;
     private boolean running;
     private byte[] dataRcv = new byte[1024];
+    gestion g = new gestion();
 
-    gestion g;
-
-    public ServerReceive ( DatagramSocket serverSocket) {
+    public ServerReceive( DatagramSocket serverSocket ) throws SocketException {
         this.serverSocket = serverSocket;
-    }
-
-    public void run() {
         running = true;
         try {
-            System.out.println("Enter something :");
             while (running) {
                 DatagramPacket pkRcv = new DatagramPacket(dataRcv, dataRcv.length);
                 serverSocket.receive(pkRcv);
@@ -29,15 +25,13 @@ public class ServerReceive extends Thread {
                 String received = new String(pkRcv.getData(), 0, pkRcv.getLength());
                 if (received.equals("quit")) {
                     running = false;
-                    continue;
                 } else {
                     g.commandManager(pkRcv);
                 }
-                serverSocket.close();
             }
+            serverSocket.close();
         } catch (IOException e) {
-//            e.printStackTrace();
-            System.out.println("error in Server Receive");
+            e.printStackTrace();
         }
     }
 }
