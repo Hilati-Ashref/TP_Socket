@@ -1,24 +1,30 @@
 package Model;
 
+import java.net.InetAddress;
+
 public class User {
-    private String IP, userName;
+    private String nom, userName;
+    private InetAddress IP;
     private int    port;
+    private boolean onlineState;
 
     public User () {
     }
 
-    public User ( String IP, String userName, int port ) {
-        this.IP       = IP;
-        this.userName = userName;
-        this.port     = port;
+    public User ( String nom, String userName, InetAddress IP, int port, boolean onlineState ) {
+        this.nom         = nom;
+        this.userName    = userName;
+        this.IP          = IP;
+        this.port        = port;
+        this.onlineState = onlineState;
     }
 
-    public String getIP () {
-        return IP;
+    public String getNom () {
+        return nom;
     }
 
-    public void setIP ( String IP ) {
-        this.IP = IP;
+    public void setNom ( String nom ) {
+        this.nom = nom;
     }
 
     public String getUserName () {
@@ -29,6 +35,14 @@ public class User {
         this.userName = userName;
     }
 
+    public InetAddress getIP () {
+        return IP;
+    }
+
+    public void setIP ( InetAddress IP ) {
+        this.IP = IP;
+    }
+
     public int getPort () {
         return port;
     }
@@ -37,12 +51,23 @@ public class User {
         this.port = port;
     }
 
+    public boolean isOnlineState () {
+        return onlineState;
+    }
+
+    public void setOnlineState ( boolean onlineState ) {
+        this.onlineState = onlineState;
+    }
+
     @Override
     public String toString () {
         return "User{" +
-                "IP='" + IP + '\'' +
+                "nom='" + nom + '\'' +
                 ", userName='" + userName + '\'' +
+                ", IP=" + IP +
                 ", port=" + port +
+                ", onlineState=" + onlineState +
                 '}';
     }
+
 }

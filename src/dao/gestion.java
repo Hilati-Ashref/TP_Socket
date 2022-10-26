@@ -2,14 +2,15 @@ package dao;
 
 import Model.User;
 import ServerSide.ServerSend;
-import ServerSide.ServerUDP;
 
 import java.net.DatagramPacket;
-import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class gestion implements Igestion {
+    List<User> listUsers = new ArrayList();
 
     public gestion() {
     }

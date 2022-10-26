@@ -13,7 +13,7 @@ public class ServerReceive {
     private byte[] dataRcv = new byte[1024];
     gestion g = new gestion();
 
-    public ServerReceive( DatagramSocket serverSocket ) throws SocketException {
+    public ServerReceive( DatagramSocket serverSocket ) {
         this.serverSocket = serverSocket;
         running = true;
         try {

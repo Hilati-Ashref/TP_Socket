@@ -1,5 +1,7 @@
 package ServerSide;
 
+import Model.User;
+
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
