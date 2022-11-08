@@ -3,7 +3,7 @@ package Model;
 import java.net.InetAddress;
 
 public class User {
-    private String nom, userName;
+    private String name, userName;
     private InetAddress IP;
     private int    port;
     private boolean onlineState;
@@ -11,20 +11,26 @@ public class User {
     public User () {
     }
 
-    public User ( String nom, String userName, InetAddress IP, int port, boolean onlineState ) {
-        this.nom         = nom;
+    public User ( String userName, InetAddress IP, int port ) {
+        this.userName    = userName;
+        this.IP          = IP;
+        this.port        = port;
+    }
+
+    public User ( String userName, String name, InetAddress IP, int port, boolean onlineState ) {
+        this.name        = name;
         this.userName    = userName;
         this.IP          = IP;
         this.port        = port;
         this.onlineState = onlineState;
     }
 
-    public String getNom () {
-        return nom;
+    public String getName () {
+        return name;
     }
 
-    public void setNom ( String nom ) {
-        this.nom = nom;
+    public void setName ( String name ) {
+        this.name = name;
     }
 
     public String getUserName () {
@@ -61,13 +67,9 @@ public class User {
 
     @Override
     public String toString () {
-        return "User{" +
-                "nom='" + nom + '\'' +
+        return "\nname='" + name + '\'' +
                 ", userName='" + userName + '\'' +
-                ", IP=" + IP +
-                ", port=" + port +
-                ", onlineState=" + onlineState +
-                '}';
+                ", onlineState=" + onlineState;
     }
 
 }

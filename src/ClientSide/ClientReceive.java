@@ -17,7 +17,7 @@ public class ClientReceive extends Thread {
                 DatagramPacket pkRcv = new DatagramPacket(dataRcv, dataRcv.length);
                 cltSock.receive(pkRcv);
                 String msgRcv = new String(pkRcv.getData(), 0, pkRcv.getLength());
-                System.out.println("message du serveur:" + msgRcv);
+                System.out.println("Server message: " + msgRcv);
             }
         } catch (IOException e) {
             e.printStackTrace();

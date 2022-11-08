@@ -20,6 +20,7 @@ public class ClientSend extends Thread {
 
     public void run() {
         try {
+            System.out.println("Type ##login or ##signup");
             while (true){
                 BufferedReader inClavier = new BufferedReader(new InputStreamReader(System.in));
                 String msg = inClavier.readLine();
